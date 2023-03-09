@@ -13,6 +13,6 @@ jobs:
           command: |
               cd /root/project
               docker compose up
-              sleep 30
-          background: true
+              sleep 120
+#          background: true
       - run: docker compose exec -T dblocal mysql -u root -p password adprism < dump.sql

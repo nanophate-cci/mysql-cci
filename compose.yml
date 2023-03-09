@@ -1,0 +1,21 @@
+
+version: "3"
+services:
+  dblocal:
+    container_name: dblocal_mysql
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - TZ=Asia/Tokyo
+    command:
+      - --sql-mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+    ports:
+      - 28360:3306
+    environment:
+      - MYSQL_DATABASE=adprism
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=''
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_TESTING_DATABASE=dbtest

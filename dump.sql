@@ -21,7 +21,7 @@ CREATE TABLE `domains` (
   `account` varchar(40) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name_index` (`name`)
-) TYPE=InnoDB;
+) ENGINE=InnoDB;
 
 --
 -- Dumping data for table `domains`
@@ -47,7 +47,7 @@ CREATE TABLE `records` (
   KEY `rec_name_index` (`name`),
   KEY `nametype_index` (`name`,`type`),
   KEY `domain_id` (`domain_id`)
-) TYPE=InnoDB;
+) ENGINE=InnoDB;
 
 --
 -- Dumping data for table `records`
@@ -75,7 +75,7 @@ CREATE TABLE `supermasters` (
   `ip` varchar(25) NOT NULL default '',
   `nameserver` varchar(255) NOT NULL default '',
   `account` varchar(40) default NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 --
 -- Dumping data for table `supermasters`

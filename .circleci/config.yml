@@ -12,8 +12,18 @@ jobs:
           command: |
               cd /root/project
               docker compose up -d 
-          background: true
-      - run: | 
-          cd /root/project
-          sleep 120
-          docker compose exec -T dblocal mysql -u root -p password adprism < dump.sql
+      - run:
+          name: run without wait
+          command: | 
+              cd /root/project
+              docker compose exec -T dblocal mysql -uroot -ppassword -e "show tables FROM adprism;"
+              docker compose exec -T dblocal mysql -uroot -ppassword adprism < dump.sql
+      - run:
+          name: sleep 120s
+          command: |
+              cd /root/project
+              sleep 120
+              docker compose exec -T dblocal mysql -uroot -ppassword -e "show tables FROM adprism;"
+              docker compose exec -T dblocal mysql -uroot -ppassword adprism < dump.sql
+              docker compose exec -T dblocal mysql -uroot -ppassword -e "show tables FROM adprism;"
+          when: always
